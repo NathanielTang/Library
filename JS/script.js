@@ -39,18 +39,39 @@ myLibrary.push(catch22)
 const catch21 = new book("Catch 21", "Joseph Heller", 521, false)
 myLibrary.push(catch21) */
 
-
+let test = document.getElementById('banner')
 
 function createLibrary() {
     shelf.innerHTML = '';
     myLibrary.forEach((element, index) => {
+        console.log('a', index)
+        console.log('b',  element)
         let bookSpot = document.createElement("div");
         bookSpot.classList.add("card");
-        let bookDetails = document.createElement("p");
-        bookSpot.appendChild(bookDetails)
-        bookDetails.textContent = (`title: ${myLibrary[index].title}
-        author: ${myLibrary[index].author} pages: ${myLibrary[index].pages}`)
-        shelf.appendChild(bookSpot)
+        let bookTitle = document.createElement("p");
+        bookSpot.appendChild(bookTitle);
+        let bookAuthor = document.createElement("p");
+        bookSpot.appendChild(bookAuthor);
+        let bookPages = document.createElement("p");
+        bookSpot.appendChild(bookPages);
+
+        bookTitle.textContent = `title: ${myLibrary[index].title}`;
+        bookAuthor.textContent = `author: ${myLibrary[index].author}`;
+        bookPages.textContent = `pages: ${myLibrary[index].pages}`;
+
+        shelf.appendChild(bookSpot);
+
+        const deleteButton = document.createElement("button");
+        
+        bookSpot.appendChild(deleteButton);
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-button');
+        deleteButton.dataset.index = `${index}`;
+
+        console.log(deleteButton.dataset)
+
+        deleteButton.addEventListener('click', deleteBook);
+        deleteButton.addEventListener('click', createLibrary);
     })
 }
 
@@ -58,6 +79,11 @@ function clearForm() {
   title.value = "";
   author.value = "";
   pages.value = "";
+}
+
+function deleteBook() {
+    let index = parseInt(this.dataset.index);
+    myLibrary.splice(index, 1)
 }
 
 

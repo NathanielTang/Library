@@ -24,9 +24,28 @@ body {
     grid-column: 2/3;
     grid-row: 2/3;
     background-color: #c4b5fd;
-    height: 80vh;
+    height: auto;
+    padding: 50px;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 #left-section > form {
     color: white;
+}
+
+.card {
+    background-color: #7e22ce;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.delete-button {
+    width: 100px;
+    color: brown;
 }
