@@ -14,11 +14,14 @@ const shelf = document.querySelector(".shelf");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const pages = document.getElementById("pages");
+const read = document.getElementById('read')
 
 function addBookToLibrary() {
   let bookTitle = title.value;
   let bookAuthor = author.value;
   let bookPages = pages.value;
+  let bookRead = read.checked;
+  console.log(`aaaasdwe ${read.checked}`)
 
   let newBook = new book(bookTitle, bookAuthor, bookPages, true);
 
@@ -79,6 +82,7 @@ function clearForm() {
   title.value = "";
   author.value = "";
   pages.value = "";
+  read.checked = false;
 }
 
 function deleteBook() {
