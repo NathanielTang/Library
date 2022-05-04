@@ -21,12 +21,12 @@ function addBookToLibrary() {
   let bookAuthor = author.value;
   let bookPages = pages.value;
   let bookRead = read.checked;
-  console.log(`aaaasdwe ${read.checked}`)
+  
 
-  let newBook = new book(bookTitle, bookAuthor, bookPages, true);
+  let newBook = new book(bookTitle, bookAuthor, bookPages, bookRead);
 
   myLibrary.push(newBook);
-  console.log(myLibrary);
+  
 }
 
 const addToLibrary = document.getElementById("addToLibrary");
@@ -47,8 +47,7 @@ let test = document.getElementById('banner')
 function createLibrary() {
     shelf.innerHTML = '';
     myLibrary.forEach((element, index) => {
-        console.log('a', index)
-        console.log('b',  element)
+      
         let bookSpot = document.createElement("div");
         bookSpot.classList.add("card");
         let bookTitle = document.createElement("p");
@@ -57,12 +56,47 @@ function createLibrary() {
         bookSpot.appendChild(bookAuthor);
         let bookPages = document.createElement("p");
         bookSpot.appendChild(bookPages);
-
+        
         bookTitle.textContent = `title: ${myLibrary[index].title}`;
         bookAuthor.textContent = `author: ${myLibrary[index].author}`;
         bookPages.textContent = `pages: ${myLibrary[index].pages}`;
-
+        
+        
         shelf.appendChild(bookSpot);
+
+        //checkbox
+        
+        if (myLibrary[index].read) {
+        let checkboxDiv = document.createElement('div');
+        bookSpot.appendChild(checkboxDiv)
+        let bookRead =  document.createElement("input")
+        bookRead.type = 'checkbox';
+        bookRead.id = 'book-read';
+        bookRead.checked = true;
+        checkboxDiv.appendChild(bookRead)
+        let bookReadLabel = document.createElement('label');
+        bookReadLabel.setAttribute("for", "book-read");
+        bookReadLabel.textContent = "Read";
+        checkboxDiv.appendChild(bookReadLabel)
+        bookRead.textContent = "read";}
+        else {
+          let checkboxDiv = document.createElement('div');
+        bookSpot.appendChild(checkboxDiv)
+        let bookRead =  document.createElement("input")
+        bookRead.type = 'checkbox';
+        bookRead.id = 'book-read';
+        checkboxDiv.appendChild(bookRead)
+        let bookReadLabel = document.createElement('label');
+        bookReadLabel.setAttribute("for", "book-read");
+        bookReadLabel.textContent = "Read";
+        checkboxDiv.appendChild(bookReadLabel)
+        bookRead.textContent = "read";
+        }
+       
+
+        
+
+        //delete
 
         const deleteButton = document.createElement("button");
         
