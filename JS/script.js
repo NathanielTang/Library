@@ -78,7 +78,9 @@ function createLibrary() {
         bookReadLabel.setAttribute("for", "book-read");
         bookReadLabel.textContent = "Read";
         checkboxDiv.appendChild(bookReadLabel)
-        bookRead.textContent = "read";}
+        bookRead.textContent = "read";
+        bookRead.dataset.index = `${index}`;
+        bookRead.addEventListener('click', bookReadStatus)}
         else {
           let checkboxDiv = document.createElement('div');
         bookSpot.appendChild(checkboxDiv)
@@ -91,10 +93,11 @@ function createLibrary() {
         bookReadLabel.textContent = "Read";
         checkboxDiv.appendChild(bookReadLabel)
         bookRead.textContent = "read";
+        bookRead.dataset.index = `${index}`;
+        bookRead.addEventListener('click', bookReadStatus)
         }
        
-
-        
+       
 
         //delete
 
@@ -122,6 +125,15 @@ function clearForm() {
 function deleteBook() {
     let index = parseInt(this.dataset.index);
     myLibrary.splice(index, 1)
+}
+
+function bookReadStatus() {
+    let index = parseInt(this.dataset.index);
+    if (myLibrary[index].read === true) {
+      myLibrary[index].read = false
+    } else if (myLibrary[index].read === false) {
+      myLibrary[index].read = true
+    }
 }
 
 
